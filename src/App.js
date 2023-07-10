@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useFetch } from './useFetch'
 import Follower from './Follower'
-function App() {
+export default function App() {
   const { loading, data } = useFetch()
   const [page, setPage] = useState(0)
   const [followers, setFollowers] = useState([])
@@ -11,7 +11,7 @@ function App() {
     setFollowers(data[page])
   }, [loading, page])
 
-  const nextPage = () => {
+  function nextPage() {
     setPage((oldPage) => {
       let nextPage = oldPage + 1
       if (nextPage > data.length - 1) {
@@ -20,7 +20,7 @@ function App() {
       return nextPage
     })
   }
-  const prevPage = () => {
+  function prevPage () {
     setPage((oldPage) => {
       let prevPage = oldPage - 1
       if (prevPage < 0) {
@@ -30,7 +30,7 @@ function App() {
     })
   }
 
-  const handlePage = (index) => {
+  function handlePage  (index) {
     setPage(index)
   }
 
@@ -55,7 +55,7 @@ function App() {
               return (
                 <button
                   key={index}
-                  className={`page-btn ${index === page ? 'active-btn' : null}`}
+                  className={`page-btn ${index == page ? 'active-btn' : null}`}
                   onClick={() => handlePage(index)}
                 >
                   {index + 1}
@@ -72,4 +72,4 @@ function App() {
   )
 }
 
-export default App
+
